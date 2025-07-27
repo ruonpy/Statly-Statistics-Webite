@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <title>Statistics Calculator</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Statistics Calculator</h2>
+      <form method="post">
+        {% csrf_token %}
+        <label for="numbers">Enter Numbers</label>
+        {{ form.numbers }}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    {% if result %}
+      <div class="results-container">
+        <h3>Results</h3>
+        <p><strong>Input Numbers:</strong> {{ result.numbers }}</p>
+        <p><strong>Mode:</strong> {{ result.mode }}</p>
+        <p><strong>Median:</strong> {{ result.median }}</p>
+        <p><strong>Mean:</strong> {{ result.mean }}</p>
+        <p><strong>Range:</strong> {{ result.span }}</p>
+        <p><strong>Lower Quartile:</strong> {{ result.lq }}</p>
+        <p><strong>Upper Quartile:</strong> {{ result.uq }}</p>
+        <p><strong>Interquartile Range:</strong> {{ result.iqr }}</p>
+      </div>
+    {% endif %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
